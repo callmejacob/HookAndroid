@@ -3,6 +3,7 @@ package com.jacob.hookandroid
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import com.jacob.hookandroid.dynamicproxy.Client
 import com.jacob.hookandroid.hookactivity.SubActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -16,11 +17,14 @@ class MainActivity : AppCompatActivity() {
         native_text.text = stringFromJNI()
 
         // jumpto activity
-        jump.setOnClickListener {
+        jump_activity.setOnClickListener {
             val intent = Intent()
             intent.setClass(this, SubActivity::class.java)
             startActivity(intent)
         }
+
+        // 动态代理
+        dynamic_proxy.setOnClickListener { Client.dynamicVisit() }
     }
 
     /**
